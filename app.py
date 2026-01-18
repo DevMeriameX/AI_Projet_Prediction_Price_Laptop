@@ -10,10 +10,12 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- STYLE CSS POUR LE LOOK FASCINANT ---
+# --- STYLE CSS OPTIMISÉ ---
 st.markdown("""
     <style>
     .main { background-color: #f0f2f6; }
+    
+    /* Bouton de calcul */
     .stButton>button { 
         width: 100%; 
         background-color: #1e3a8a; 
@@ -23,8 +25,11 @@ st.markdown("""
         font-weight: bold;
         font-size: 1.2em;
         transition: 0.3s;
+        border: none;
     }
-    .stButton>button:hover { background-color: #3b82f6; border: none; }
+    .stButton>button:hover { background-color: #3b82f6; color: white; }
+    
+    /* Boîte de résultat */
     .price-box { 
         padding: 40px; 
         border-radius: 20px; 
@@ -33,12 +38,10 @@ st.markdown("""
         box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         text-align: center;
     }
-    .metric-container {
-        background-color: #ffffff;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
+
+    /* Suppression de la marge haute de la sidebar */
+    [data-testid="stSidebarNav"] { padding-top: 0rem; }
+    [data-testid="stSidebarUserContent"] { padding-top: 0rem; margin-top: -50px; }
     </style>
     """, unsafe_allow_html=True)
 
@@ -56,31 +59,28 @@ def load_assets():
 
 df, models_dict = load_assets()
 
-# 3. BARRE LATÉRALE (SIDEBAR) - TOUT EN HAUT
-# On commence directement par le nom et l'image pour qu'ils soient en haut
+# 3. BARRE LATÉRALE (SIDEBAR) - CENTRÉE ET REMONTÉE
 st.sidebar.markdown(
     """
-    <div style="text-align: center; padding-top: 0px;">
-        <h1 style="color: #1e3a8a; font-size: 2.5em; margin-bottom: 0px;">LapCheck</h1>
-        <p style="color: #6b7280; font-size: 0.9em; margin-bottom: 20px;">Intelligence Artificielle</p>
-        <img src="https://cdn-icons-png.flaticon.com/512/428/428001.png" width="120">
+    <div style="text-align: center; margin-top: -50px;">
+        <h1 style="color: #1e3a8a; font-size: 2.8em; margin-bottom: 0px;">LapCheck</h1>
+        <img src="https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/13-laptop-platinum-right-render-fy25:VP4-1260x795?fmt=png-alpha" width="110">
     </div>
     <br>
     """, 
     unsafe_allow_html=True
 )
 
-# Titre de la section de choix
-st.sidebar.markdown("<h3 style='text-align: center;'>Configuration IA</h3>", unsafe_allow_html=True)
+st.sidebar.markdown("<h3 style='text-align: center; font-size: 1.1em;'>Configuration IA</h3>", unsafe_allow_html=True)
 
-# Selectbox pour le modèle
 selected_model_name = st.sidebar.selectbox(
-    "🤖 Choisir l'algorithme", 
+    "🤖 Algorithme de prédiction", 
     ['XGBoost', 'Random Forest', 'Linear Regression', 'Polynomial']
 )
 model = models_dict[selected_model_name]
 
 st.sidebar.markdown("---")
+st.sidebar.info(f"**Modèle actif :** {selected_model_name}")
 
 # 4. INTERFACE PRINCIPALE
 st.title("💻 Laptop Price Predictor Pro")
