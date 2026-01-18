@@ -71,7 +71,7 @@ st.sidebar.markdown(
 st.sidebar.markdown("<h3 style='text-align: center; font-size: 1.1em;'>Configuration IA</h3>", unsafe_allow_html=True)
 
 selected_model_name = st.sidebar.selectbox(
-    "🤖 Algorithme de prédiction", 
+    "Algorithme de prédiction", 
     ['XGBoost', 'Random Forest', 'Linear Regression', 'Polynomial']
 )
 model = models_dict[selected_model_name]
