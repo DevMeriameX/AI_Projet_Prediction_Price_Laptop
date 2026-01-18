@@ -39,9 +39,6 @@ st.markdown("""
         text-align: center;
     }
 
-    /* Suppression de la marge haute de la sidebar */
-    [data-testid="stSidebarNav"] { padding-top: 0rem; }
-    [data-testid="stSidebarUserContent"] { padding-top: 0rem; margin-top: -50px; }
     </style>
     """, unsafe_allow_html=True)
 
