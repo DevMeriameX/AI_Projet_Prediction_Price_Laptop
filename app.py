@@ -5,7 +5,7 @@ import pandas as pd
 
 # 1. CONFIGURATION DE LA PAGE
 st.set_page_config(
-    page_title="Laptop Price Predictor Pro", 
+    page_title="LapCheck", 
     page_icon="💻", 
     layout="wide"
 )
@@ -58,7 +58,7 @@ df, models_dict = load_assets()
 
 # 3. BARRE LATÉRALE (SIDEBAR)
 st.sidebar.image("https://cdn-icons-png.flaticon.com/512/428/428001.png", width=100)
-st.sidebar.title("⚙️ Configuration IA")
+st.sidebar.title("Configuration IA")
 
 selected_model_name = st.sidebar.selectbox(
     "🤖 Choisir l'algorithme", 
@@ -73,13 +73,13 @@ st.sidebar.info(f"""
 
 # 4. INTERFACE PRINCIPALE
 st.title("💻 Laptop Price Predictor Pro")
-st.markdown("##### Anticipez le prix du marché grâce au Machine Learning")
+
 
 # Utilisation de colonnes pour l'organisation
 col1, col2 = st.columns(2, gap="large")
 
 with col1:
-    st.subheader("🛠️ Composants Système")
+    st.subheader("Composants Système")
     company = st.selectbox(' Marque', df['Company'].unique())
     type_name = st.selectbox(' Type de Laptop', df['TypeName'].unique())
     ram = st.select_slider(' Mémoire RAM (GB)', options=sorted(df['RAM (GB)'].unique()), value=8)
@@ -88,7 +88,7 @@ with col1:
     os = st.selectbox(' Système d\'exploitation', df['os'].unique())
 
 with col2:
-    st.subheader("🖥️ Affichage & Stockage")
+    st.subheader("Affichage & Stockage")
     cpu_brand = st.selectbox(' Gamme Processeur', df['Cpu brand'].unique())
     gpu_brand = st.selectbox(' Marque GPU', df['GPU_Company'].unique())
     
