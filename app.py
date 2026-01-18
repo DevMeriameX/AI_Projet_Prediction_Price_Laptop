@@ -56,20 +56,33 @@ def load_assets():
 
 df, models_dict = load_assets()
 
-# 3. BARRE LATÉRALE (SIDEBAR)
-st.sidebar.image("https://cdn-icons-png.flaticon.com/512/428/428001.png", width=100)
-st.sidebar.title("Configuration IA")
+# 3. BARRE LATÉRALE (SIDEBAR) - CENTRÉE
+# On utilise du HTML pour forcer l'alignement au milieu
+st.sidebar.markdown(
+    """
+    <div style="text-align: center;">
+        <img src="https://cdn-icons-png.flaticon.com/512/428/428001.png" width="100">
+        <h1 style="color: #1e3a8a; margin-top: 10px;">LapCheck</h1>
+    </div>
+    """, 
+    unsafe_allow_html=True
+)
+
+st.sidebar.markdown("<h3 style='text-align: center;'>Configuration IA</h3>", unsafe_allow_html=True)
 
 selected_model_name = st.sidebar.selectbox(
-    "🤖 Choisir l'algorithme", 
+    "Choisir l'algorithme", 
     ['XGBoost', 'Random Forest', 'Linear Regression', 'Polynomial']
 )
 model = models_dict[selected_model_name]
 
 st.sidebar.markdown("---")
-st.sidebar.info(f"""
-**Modèle actif :** {selected_model_name}
-""")
+# Centrer aussi l'info du modèle actif
+st.sidebar.markdown(f"""
+<div style="text-align: center; background-color: #e0e7ff; padding: 10px; border-radius: 10px;">
+    <strong>Modèle actif :</strong><br>{selected_model_name}
+</div>
+""", unsafe_allow_html=True)
 
 # 4. INTERFACE PRINCIPALE
 st.title("💻 Laptop Price Predictor Pro")
